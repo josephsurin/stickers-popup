@@ -5,6 +5,7 @@ from util import PREVIEW_WIDTH, KEYCODES
 
 def stickers_notebook(stickers_data):
     notebook = Gtk.Notebook()
+    notebook.set_scrollable(True)
     for sd in stickers_data:
         title_img_pb = GdkPixbuf.Pixbuf.new_from_file_at_scale(sd['stickers_data'][0]['preview_file'], PREVIEW_WIDTH//2, -1, True)
         title_img = Gtk.Image.new_from_pixbuf(title_img_pb)
