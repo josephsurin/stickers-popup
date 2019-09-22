@@ -5,7 +5,8 @@ from gi.repository import Gtk, Gdk
 from os import path
 
 from util import get_stickers_data, DEF_WIDTH, DEF_HEIGHT
-from stickers_grid import stickers_grid
+# from stickers_grid import stickers_grid
+from stickers_notebook import stickers_notebook
 
 class StickersWindow(Gtk.Window):
 
@@ -19,9 +20,11 @@ class StickersWindow(Gtk.Window):
         wa = self.get_display().get_primary_monitor().get_workarea()
         sw, sh = wa.width, wa.height
         ww, wh = self.get_size()
-        self.move(sw-ww ,sh-wh)
+        self.move(sw - ww, sh - wh)
 
-        self.add(stickers_grid(stickers_data[0]['stickers_data']))
+        self.add(stickers_notebook(stickers_data))
+
+        # self.add(stickers_grid(stickers_data[0]['stickers_data']))
 
 stickers_data = get_stickers_data(path.abspath('../stickers'))
 win = StickersWindow(stickers_data)
