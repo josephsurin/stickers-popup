@@ -6,6 +6,7 @@ from util import PREVIEW_WIDTH, KEYCODES
 def stickers_notebook(stickers_data):
     notebook = Gtk.Notebook()
     notebook.set_scrollable(True)
+    notebook.set_tab_pos(Gtk.PositionType.RIGHT)
     for sd in stickers_data:
         title_img_pb = GdkPixbuf.Pixbuf.new_from_file_at_scale(sd['stickers_data'][0]['preview_file'], PREVIEW_WIDTH//2, -1, True)
         title_img = Gtk.Image.new_from_pixbuf(title_img_pb)
@@ -18,7 +19,7 @@ def stickers_notebook(stickers_data):
 def handle_keypress(notebook, e):
     if e.state == Gdk.ModifierType.SHIFT_MASK:
         keycode = e.hardware_keycode
-        if keycode == KEYCODES['h']:
+        if keycode == KEYCODES['k']:
             notebook.prev_page()
-        elif keycode == KEYCODES['l']:
+        elif keycode == KEYCODES['j']:
             notebook.next_page()
