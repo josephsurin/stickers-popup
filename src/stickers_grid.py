@@ -1,7 +1,7 @@
 from functools import partial
 from enum import Enum
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 from sticker_button import sticker_button
 from util import CHILDREN_PER_LINE, KEYCODES
@@ -33,6 +33,8 @@ def stickers_grid(stickers_data):
     return scrolled
 
 def handle_keypress(state, grid, e):
+    if e.state == Gdk.ModifierType.SHIFT_MASK:
+        return None
     keycode = e.hardware_keycode
     if keycode == KEYCODES['h']:
         try_idx = state['idx'] - 1

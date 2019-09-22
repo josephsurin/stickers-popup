@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
@@ -12,6 +14,7 @@ class StickersWindow(Gtk.Window):
 
     def __init__(self, stickers_data):
         Gtk.Window.__init__(self, title='stickers')
+        self.set_role('stickers')
 
         self.set_default_size(DEF_WIDTH, DEF_HEIGHT)
         self.set_size_request(DEF_WIDTH, DEF_HEIGHT)
@@ -26,7 +29,7 @@ class StickersWindow(Gtk.Window):
 
         # self.add(stickers_grid(stickers_data[0]['stickers_data']))
 
-stickers_data = get_stickers_data(path.abspath('../stickers'))
+stickers_data = get_stickers_data(path.abspath(path.join(path.dirname(path.realpath(__file__)), '../stickers')))
 win = StickersWindow(stickers_data)
 win.connect('destroy', Gtk.main_quit)
 win.show_all()
